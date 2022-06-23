@@ -191,7 +191,7 @@ To generate point cloud results, just run:
 bash scripts/test_tnt.sh
 ```
 Note that：
-* Different from the concurrent works (e.g. [UniMVSNet](https://github.com/prstrive/UniMVSNet), [Gbi-Net](https://github.com/MiZhenxing/GBi-Net)) that pick out different fusion thresholds for different scenes, we mainly use the same thresholds for all scenes. And we believe that TransMVSNet is able to achieve further improvements with well-chosen fusion thresholds.
+* The parameters of point cloud fusion have not been studied thoroughly and the performance can be better if cherry-picking more appropriate thresholds for each of the scenes.
 * The dynamic fusion code is borrowed from [AA-RMVSNet](https://github.com/QT-Zhu/AA-RMVSNet).
 
 For quantitative evaluation, you can upload your point clouds to [Tanks and Temples benchmark](https://www.tanksandtemples.org/).
@@ -199,13 +199,12 @@ For quantitative evaluation, you can upload your point clouds to [Tanks and Temp
 ## 🔗 Citation
 
 ```bibtex
-@InProceedings{Ding_2022_TransMVSNet,
-author={Ding, Yikang and Yuan, Wentao and Zhu, Qingtian and Zhang, Haotian and Liu, Xiangyue and Wang, Yuanjiang and Liu, Xiao},
-title={TransMVSNet: Global Context-Aware Multi-View Stereo Network With Transformers},
-booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-month={June},
-year={2022},
-pages={8585-8594}
+@inproceedings{ding2022transmvsnet,
+  title={Transmvsnet: Global context-aware multi-view stereo network with transformers},
+  author={Ding, Yikang and Yuan, Wentao and Zhu, Qingtian and Zhang, Haotian and Liu, Xiangyue and Wang, Yuanjiang and Liu, Xiao},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={8585--8594},
+  year={2022}
 }
 ```
 
