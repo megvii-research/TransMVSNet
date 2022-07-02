@@ -43,7 +43,7 @@ parser.add_argument('--num_worker', type=int, default=4, help='depth_filer worke
 parser.add_argument('--save_freq', type=int, default=20, help='save freq of local pcd')
 parser.add_argument('--filter_method', type=str, default='normal', choices=["gipuma", "normal", "dynamic"], help="filter method")
 #filter
-parser.add_argument('--conf', type=float, default=0.3, help='prob confidence')
+parser.add_argument('--conf', type=float, default=0.03, help='prob confidence')
 parser.add_argument('--thres_view', type=int, default=5, help='threshold of num view')
 #filter by gimupa
 parser.add_argument('--fusibile_exe_path', type=str, default='../fusibile/fusibile')
