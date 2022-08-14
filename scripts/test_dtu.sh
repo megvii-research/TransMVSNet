@@ -20,5 +20,6 @@ python test.py \
 --ndepths="48,32,8" \
 --depth_inter_r="4.0,1.0,0.5" \
 --interval_scale=1.06 \
---filter_method="gipuma" \
---fusibile_exe_path=$FUSIBLE_PATH
+--filter_method="normal"
+#--filter_method="gipuma" \
+#--fusibile_exe_path=$FUSIBLE_PATH
