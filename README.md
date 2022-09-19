@@ -156,7 +156,7 @@ Run:
 ```
 bash scripts/test_dtu.sh
 ```
-Use the `normal` fusion method to fuse point cloud results. But you can also set to use `gipuma` fusion method to fuse the point clouds. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/kysucix/fusibile).
+You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experimens, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/kysucix/fusibile).
 
 
 For quantitative evaluation on DTU dataset, download [SampleSet](http://roboimagedata.compute.dtu.dk/?page_id=36) and [Points](http://roboimagedata.compute.dtu.dk/?page_id=36). Unzip them and place `Points` folder in `SampleSet/MVS Data/`. The structure looks like:
