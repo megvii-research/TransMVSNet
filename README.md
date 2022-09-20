@@ -30,7 +30,7 @@
 
 ## [Paper](https://openaccess.thecvf.com/content/CVPR2022/papers/Ding_TransMVSNet_Global_Context-Aware_Multi-View_Stereo_Network_With_Transformers_CVPR_2022_paper.pdf) | [Project Page](https://dingyikang.github.io/transmvsnet.github.io/) | [Arxiv](https://arxiv.org/abs/2111.14600/) | [Models](https://drive.google.com/drive/folders/1ZJ9bx9qZENEoXv5i5izKCNszlaCNBMkJ?usp=sharing/)
 
-
+**Tips**: If you meet any problems when reproduce our results, please contact Yikang Ding (dyk20@mails.tsinghua.edu.cn). We are happy to help you solve the problems and share our experience.
 
 <!--
 Official implementation of CVPR2022 paper 'TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers'
@@ -156,7 +156,7 @@ Run:
 ```
 bash scripts/test_dtu.sh
 ```
-You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experimens, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/kysucix/fusibile).
+You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experiments, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/kysucix/fusibile).
 
 
 For quantitative evaluation on DTU dataset, download [SampleSet](http://roboimagedata.compute.dtu.dk/?page_id=36) and [Points](http://roboimagedata.compute.dtu.dk/?page_id=36). Unzip them and place `Points` folder in `SampleSet/MVS Data/`. The structure looks like:
