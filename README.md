@@ -36,6 +36,12 @@
 Official implementation of CVPR2022 paper 'TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers'
 -->
 
+## Change log
+* 09.2022: Fix the bugs in MATLAB evaluation code.
+* 09.2022: Fix the bug of defualt fuse parameters of gipuma, which could have a great impact on the final results.
+* 09.2022: Update the website link and instruction of installing gipuma, which would affect the fusion quality.
+
+
 ## 📔 Introduction
 In this paper, we present TransMVSNet, based on our exploration of feature matching in multi-view stereo (MVS). We analogize MVS back to its nature of a feature matching task and therefore propose a powerful Feature Matching Transformer (FMT) to leverage intra- (self-) and inter- (cross-) attention to aggregate long-range context information within and across images. To facilitate a better adaptation of the FMT, we leverage an Adaptive Receptive Field (ARF) module to ensure a smooth transit in scopes of features and bridge different stages with a feature pathway to pass transformed features and gradients across different scales. In addition, we apply pair-wise feature correlation to measure similarity between features, and adopt ambiguity-reducing focal loss to strengthen the supervision. To the best of our knowledge, TransMVSNet is the first attempt to leverage Transformer into the task of MVS. As a result, our method achieves state-of-the-art performance on DTU dataset, Tanks and Temples benchmark, and BlendedMVS dataset.
 ![](assets/overview.png)
@@ -156,7 +162,7 @@ Run:
 ```
 bash scripts/test_dtu.sh
 ```
-You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experiments, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/kysucix/fusibile).
+You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experiments, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/YoYo000/MVSNet#post-processing). The installed gipuma is a modified version from [Yao Yao](https://github.com/YoYo000/fusibile).
 
 
 For quantitative evaluation on DTU dataset, download [SampleSet](http://roboimagedata.compute.dtu.dk/?page_id=36) and [Points](http://roboimagedata.compute.dtu.dk/?page_id=36). Unzip them and place `Points` folder in `SampleSet/MVS Data/`. The structure looks like:
