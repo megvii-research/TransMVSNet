@@ -9,7 +9,7 @@
 
 
 ## ⚠ Change log
-* 09.2022: Add more detailed instruction of how to reproduce the reported results (see [here](https://github.com/megvii-research/TransMVSNet/edit/master/README.md#-testing-on-dtu)).
+* 09.2022: Add more detailed instruction of how to reproduce the reported results (see [testing-on-dtu](#✔-testing-on-dtu)).
 * 09.2022: Fix the bugs in MATLAB evaluation code (remove the debug code).
 * 09.2022: Fix the bug of defualt fuse parameters of gipuma, which could have a great impact on the final results.
 * 09.2022: Update the website link and instruction of installing gipuma, which would affect the fusion quality.
