@@ -1,29 +1,4 @@
 
-<!--
-<p align="center">
-
-  <h1 align="center">TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers</h1>
-  <h3 style="color:#5a6268;" align="center">CVPR 2022</h3>
-  <!--
-  <p align="center">
-    <a href="https://github.com/DingYikang/">Yikang Ding</a><sup>*</sup>
-    ·
-    <a href="https://github.com/wtyuan96/">Wentao Yuan</a><sup>*</sup>
-    ·
-    <a href="https://qt-zhu.github.io/">Qingtian Zhu</a>
-    ·
-    <a href="https://scholar.google.com/citations?user=X1Sa_GYAAAAJ&hl=zh-CN/" >Haotian Zhang</a>
-    ·
-    <a href="https://xiangyueliu.github.io/">Xiangyue Liu</a>
-    ·
-    Yuanjiang Wang
-    ·<a href="http://www.liuxiao.org/aboutme/">Xiao Liu</a>
-  </p>
-  
-  <h2 align="center"><a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Ding_TransMVSNet_Global_Context-Aware_Multi-View_Stereo_Network_With_Transformers_CVPR_2022_paper.pdf">Paper</a> | <a href="https://dingyikang.github.io/transmvsnet.github.io/">Project Page</a> | <a href="https://arxiv.org/abs/2111.14600/">Arxiv</a> | <a href="https://drive.google.com/drive/folders/1ZJ9bx9qZENEoXv5i5izKCNszlaCNBMkJ?usp=sharing/">Models</a></h3>
-  <div align="center"></div>
-</p>
--->
 
 # (CVPR2022) TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers
 
@@ -36,8 +11,9 @@
 Official implementation of CVPR2022 paper 'TransMVSNet: Global Context-aware Multi-view Stereo Network with Transformers'
 -->
 
-## Change log
-* 09.2022: Fix the bugs in MATLAB evaluation code.
+## ⚠ Change log
+* 09.2022: Add more detailed instruction of how to reproduce the reported results (see [here](https://github.com/megvii-research/TransMVSNet/edit/master/README.md#-testing-on-dtu)).
+* 09.2022: Fix the bugs in MATLAB evaluation code (remove the debug code).
 * 09.2022: Fix the bug of defualt fuse parameters of gipuma, which could have a great impact on the final results.
 * 09.2022: Update the website link and instruction of installing gipuma, which would affect the fusion quality.
 
@@ -152,7 +128,16 @@ bash scripts/train_bld_fintune.sh
 For easy testing, you can download our [pre-trained models](https://drive.google.com/drive/folders/1ZJ9bx9qZENEoXv5i5izKCNszlaCNBMkJ?usp=sharing) and put them in `checkpoints` folder, or use your own models and follow the instruction below.
 
 ### ✔ Testing on DTU
-Set the configuration in ``scripts/test_dtu.sh``:
+
+**Important Tips:** to reproduce our reported results, you need to:
+* compile and install the modified `gipuma` from [Yao Yao](https://github.com/YoYo000/fusibile) as introduced below
+* use the latest code as we have fixed tiny bugs and updated the fusion parameters
+* make sure you install the right version of python and pytorch, use some old versions would throw warnings of the default action of `align_corner` in several functions, which would affect the final results
+* be aware that we only test the code on 2080Ti and Ubuntu 18.04, other devices and systems might get slightly different results
+* make sure you that you use the `model_dtu.ckpt` for testing
+
+
+To start testing, set the configuration in ``scripts/test_dtu.sh``:
 * Set ``TESTPATH`` as the path of DTU testing set.
 * Set ``TESTLIST`` as the path of test list (.txt file).
 * Set ``CKPT_FILE`` as the path of the model weights.
@@ -162,7 +147,23 @@ Run:
 ```
 bash scripts/test_dtu.sh
 ```
-You can use the `normal` fusion method or `gipuma` fusion method to fuse the point clouds. In our experiments, we defaultly use the `gipuma` fusion method. The instruction for installing and compiling `gipuma` can be found [here](https://github.com/YoYo000/MVSNet#post-processing). The installed gipuma is a modified version from [Yao Yao](https://github.com/YoYo000/fusibile).
+**Note:** You can use the `gipuma` fusion method or `normal` fusion method to fuse the point clouds. **In our experiments, we defaultly use the `gipuma` fusion method**. 
+With using the uploaded ckpt and latest code, these two fusion methods would get the below results:
+|   Fuse    | Overall |
+| --- | --- |
+|   gipuma   | 0.304 |
+|   normal    | 0.314 |
+
+<!-- The simple instruction for installing and compiling `gipuma` can be found [here](https://github.com/YoYo000/MVSNet#post-processing).  The installed gipuma is a modified version from [Yao Yao](https://github.com/YoYo000/fusibile).-->
+To install the `gipuma`, clone the modified version from [Yao Yao](https://github.com/YoYo000/fusibile).
+Modify the line-10 in `CMakeLists.txt` to suit your GPUs. Othervise you would meet warnings when compile it, which would lead to failure and get 0 points in fused point cloud. For example, if you use 2080Ti GUP, modify the line-10 to:
+```
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 --use_fast_math --ptxas-options=-v -std=c++11 --compiler-options -Wall -gencode arch=compute_70,code=sm_70)
+```
+If you use other kind of GPUs, please modify the arch code to suit your device (`arch=compute_XX,code=sm_XX`).
+Then install it by `cmake .` and `make`, which will generate the executable at `FUSIBILE_EXE_PATH`.
+Please note 
+
 
 
 For quantitative evaluation on DTU dataset, download [SampleSet](http://roboimagedata.compute.dtu.dk/?page_id=36) and [Points](http://roboimagedata.compute.dtu.dk/?page_id=36). Unzip them and place `Points` folder in `SampleSet/MVS Data/`. The structure looks like:
